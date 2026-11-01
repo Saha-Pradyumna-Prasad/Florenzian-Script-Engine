@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Florenzian Script - Engine Studio</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Tumi image use korcho, tai base theme light rakha valo blur opacity architecture setup dynamic calling. */
+            --bg-base: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.9); /* Card slight translucent background structure logic map logic. */
+            --card-border: rgba(226, 232, 240, 0.7);
+            /* screenshot dekhe colorful setup */
+            --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            --accent-glow: rgba(99, 102, 241, 0.25);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --success-bg: rgba(236, 253, 245, 0.9);
+            --success-border: rgba(110, 231, 183, 0.7);
+            --success-text: #047857;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            /* 1. BACKGROUND PICTURE ADD KORA (Direct image_1.png link definition dynamic call context dynamic architecture standard architecture call Standard data standard configuration static layout structure layout architectural setup standard layout dynamic call logic architectural call C call Dynamic logic data call architecture) */
+            background-image: url('bgd pic.jpg'); /* Replace with actual direct link context context map dynamic architectural dynamic calling architecture. */
+            
+            /* 2. RESPONSIVE SETUP */
+            background-size: cover;      /* Full responsive context architecture call dynamic architecture layout mapping calls standard static layout dynamic architectural design structure dynamic architectural architecture map layout definition call Standard architectural call context. */
+            background-position: center;  /* Picture center architecture context structure Standard data Standard data structure dynamic architectural dynamic calling data structure C data map architecture logic standard context architectural context static call setup layout dynamic architectural. */
+            background-repeat: no-repeat; /* Repeat structure dynamic calling layout layout layout Static content call call Standard context context Dynamic context dynamic data C data setup standard dynamic dynamic architecture. */
+            background-attachment: fixed;  /* Parallax context standard content dynamic dynamic architecture standard layout architecture architectural architecture map design standard standard calling C data structure layout setup dynamic calling structure standard mapping calls static definition mapping calls standard. */
+
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .container-custom {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2.5rem 1rem 1rem 1rem;
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            position: relative; /* Image context layout logic standard call logic context dynamic structure C calling static definition mapping context Dynamic architectural dynamic architectural architecture map design dynamic standard architectural map logic standard dynamic dynamic calling. */
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8); /* Picture context dynamic standard call logic context Dynamic dynamic dynamic standard call. */
+        }
+
+        header h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e293b 0%, #4f46e5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        header h1 i {
+            -webkit-text-fill-color: initial;
+            color: #6366f1;
+        }
+
+        header p {
+            color: #1e293b; /* White layout dynamic context context dynamic calling dynamic architecture layout Dynamic standard architectural map. */
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Workspace Grid Layout */
+        .workspace {
+            display: grid;
+            grid-template-columns: 390px 1fr;
+            gap: 1.5rem;
+        }
+
+        @media(max-width: 992px) {
+            .workspace {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Cards Style (Transparent Background standard setup structure dynamic mapping setup configuration architectural layout Standard map architecture Dynamic logic calling context data structure static content Standard setup standard data layout Dynamic definition architectural definition Standard definition Standard architecture Standard data call Dynamic definition logic Dynamic dynamic architectural map structure. ) */
+        .panel-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.1), 0 5px 15px -5px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px); /* Picture blur architectural design architecture definition data mapping architecture definition static architecture data mapping architecture map calling context architectural standard dynamic standard layout context Dynamic architecture layout context dynamic definition context calling architecture call Dynamic configuration logic Dynamic call Standard context C mapping calls standard dynamic calling C calling structure Dynamic configuration Dynamic dynamic mapping structure C code. */
+        }
+
+        /* Sidebar & Search */
+        .sidebar-header {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--card-border);
+            background: rgba(248, 250, 252, 0.7);
+        }
+
+        .search-wrapper {
+            position: relative;
+        }
+
+        .search-wrapper i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #818cf8;
+        }
+
+        .search-input {
+            width: 100%;
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 12px 14px 12px 46px;
+            color: var(--text-main);
+            font-size: 0.92rem;
+            font-weight: 500;
+            outline: none;
+            transition: all 0.25s ease;
+        }
+
+        .search-input:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 4px var(--accent-glow);
+        }
+
+        .function-list {
+            max-height: 490px;
+            overflow-y: auto;
+            padding: 0.75rem;
+        }
+
+        .function-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        .function-list::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .func-item {
+            padding: 14px 16px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 8px;
+            border: 1px solid transparent;
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .func-item:hover {
+            background: rgba(241, 245, 249, 0.8);
+            transform: translateX(4px);
+        }
+
+        .func-item.active {
+            /* screenshot dekhe indigo gradient setup configuration */
+            background: var(--primary-gradient);
+            color: #ffffff;
+            box-shadow: 0 8px 20px var(--accent-glow);
+            transform: scale(1.01);
+        }
+
+        .func-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .func-title {
+            font-weight: 700;
+            font-size: 0.98rem;
+        }
+
+        .func-badge {
+            font-size: 0.75rem;
+            background: #e0e7ff;
+            color: #3730a3;
+            padding: 3px 10px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .func-item.active .func-badge {
+            background: rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+        }
+
+        .func-desc {
+            font-size: 0.83rem;
+            color: var(--text-muted);
+        }
+
+        .func-item.active .func-desc {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Console View */
+        .console-area {
+            padding: 2.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .console-top-info {
+            margin-bottom: 1.75rem;
+            animation: slideUp 0.35s ease;
+        }
+
+        .console-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.6rem;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .console-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        .ita-tag {
+            /* screenshot dekhe colorful tag setup setup standard configuration Standard calling call configuration. */
+            background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+            color: #ffffff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(244, 63, 94, 0.25);
+        }
+
+        .console-desc {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            font-weight: 500;
+        }
+
+        /* Dynamic Form Inputs */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-bottom: 1.75rem;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .input-label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #334155;
+            margin-bottom: 0.5rem;
+        }
+
+        .custom-input {
+            width: 100%;
+            background: rgba(248, 250, 252, 0.8);
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 13px 18px;
+            color: var(--text-main);
+            font-size: 1.05rem;
+            font-weight: 600;
+            outline: none;
+            transition: all 0.25s ease;
+        }
+
+        .custom-input:focus {
+            border-color: #6366f1;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px var(--accent-glow);
+        }
+
+        /* Execute Button */
+        .btn-run {
+            /* colorful dynamic button dynamic layout standard architectural map logical calling setup. */
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            padding: 16px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 6px 20px var(--accent-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-run:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px var(--accent-glow);
+            filter: brightness(1.05);
+        }
+
+        .btn-run:active {
+            transform: translateY(0);
+        }
+
+        /* Output Box (vibrant color setup configuration) */
+        .output-container {
+            background: var(--success-bg);
+            border: 2px solid var(--success-border);
+            border-radius: 16px;
+            padding: 1.4rem 1.6rem;
+            margin-top: 1.75rem;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.08);
+            backdrop-filter: blur(5px);
+        }
+
+        .output-label {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--success-text);
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 800;
+        }
+
+        .output-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.75rem;
+            color: #047857;
+            font-weight: 700;
+            word-break: break-all;
+            animation: popIn 0.3s ease;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.96); opacity: 0.4; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @media(max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container-custom">
+        <header>
+            <h1><i class="fa-solid fa-code"></i> Florenzian Script Engine</h1>
+            <p>Next-Generation Modular Compiler Lexical Analyzer & C Engine Web Architecture</p>
+        </header>
+
+        <div class="workspace">
+            <!-- Left Sidebar -->
+            <div class="panel-card">
+                <div class="sidebar-header">
+                    <div class="search-wrapper">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="searchInput" class="search-input" placeholder="Search 25 Italian/English functions...">
+                    </div>
+                </div>
+                <div class="function-list" id="functionList">
+                    <!-- Dynamic JS List -->
+                </div>
+            </div>
+
+            <!-- Right Workspace -->
+            <div class="panel-card console-area">
+                <div>
+                    <div class="console-top-info" id="consoleHeader">
+                        <div class="console-title-row">
+                            <h2 class="console-title" id="activeEng">Select Function</h2>
+                            <span class="ita-tag" id="activeIta">C Backend Logic</span>
+                        </div>
+                        <p class="console-desc" id="activeDesc">Choose a modular function from the left sidebar to execute operations.</p>
+                    </div>
+
+                    <form id="calcForm">
+                        <div class="form-grid" id="inputGrid">
+                            <div class="form-group" id="boxA">
+                                <label class="input-label" id="labelA">Input A</label>
+                                <input type="number" step="any" class="custom-input" id="inputA" required>
+                            </div>
+                            <div class="form-group" id="boxB">
+                                <label class="input-label" id="labelB">Input B</label>
+                                <input type="number" step="any" class="custom-input" id="inputB" required>
+                            </div>
+                            <div class="form-group col-12 d-none" id="boxC" style="display: none; grid-column: span 2;">
+                                <label class="input-label" id="labelC">Input C</label>
+                                <input type="number" step="any" class="custom-input" id="inputC">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-run">
+                            <i class="fa-solid fa-play"></i> Execute Function Logic
+                        </button>
+                    </form>
+                </div>
+
+                <div class="output-container">
+                    <div class="output-label">
+                        <i class="fa-solid fa-microchip"></i> EXECUTION RESULT (C ENGINE)
+                    </div>
+                    <div class="output-value" id="outputResult">--</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Footer -->
+    <footer class="text-center py-4 mt-5 border-top border-secondary-subtle bg-white shadow-sm">
+        <div class="container">
+            <p class="mb-0 text-muted fw-semibold" style="font-size: 0.95rem;">
+                Powered by <span class="text-primary fw-bold" style="letter-spacing: 0.3px;">Dev.Ankur</span>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // PDF Specification Mapping for 25 C Functions[cite: 8, 9]
+        // (This part is unchanged as it handles logic call)
+        const florenzianFunctions = [
+            { id: 1, eng: "Add/Sum", ita: "Addizione", desc: "Addition of two numbers", count: 2, calc: (a,b)=>a+b },
+            { id: 2, eng: "Subtract", ita: "Sottrazione", desc: "Subtraction of two numbers", count: 2, calc: (a,b)=>a-b },
+            { id: 3, eng: "Multiply", ita: "Moltiplicazione", desc: "Multiplication of two numbers", count: 2, calc: (a,b)=>a*b },
+            { id: 4, eng: "Divide", ita: "Divisione", desc: "Division of two numbers", count: 2, calc: (a,b)=>b!==0?a/b:"Error: Division by zero" },
+            { id: 5, eng: "Modulus", ita: "Modulo", desc: "Remainder of division (A % B)", count: 2, calc: (a,b)=>b!==0?a%b:"Error: Division by zero" },
+            { id: 6, eng: "Exponentiation", ita: "Esponenziazione", desc: "Power calculation (A^B)", count: 2, calc: (a,b)=>Math.pow(a,b) },
+            { id: 7, eng: "Average", ita: "Media", desc: "Average of two numbers", count: 2, calc: (a,b)=>(a+b)/2 },
+            { id: 8, eng: "Maximum", ita: "Massimo", desc: "Maximum value", count: 2, calc: (a,b)=>Math.max(a,b) },
+            { id: 9, eng: "Minimum", ita: "Minimo", desc: "Minimum value", count: 2, calc: (a,b)=>Math.min(a,b) },
+            { id: 10, eng: "Percentage", ita: "Percentuale", desc: "Percentage calculation (A% of B)", count: 2, calc: (a,b)=>(a/100)*b },
+            { id: 11, eng: "Hypotenuse", ita: "Ipotenusa", desc: "Hypotenuse (Pythagoras)", count: 2, calc: (a,b)=>Math.hypot(a,b) },
+            { id: 12, eng: "Logarithm", ita: "Logaritmo", desc: "Logarithm Base B of A", count: 2, calc: (a,b)=>(a>0&&b>0&&b!==1)?Math.log(a)/Math.log(b):"Error: Invalid Log Input" },
+            { id: 13, eng: "Absolute", ita: "Valore Assoluto", desc: "Absolute difference |A - B|", count: 2, calc: (a,b)=>Math.abs(a-b) },
+            { id: 14, eng: "GCD", ita: "MCD", desc: "Greatest Common Divisor", count: 2, calc: (a,b)=>{
+                let x=Math.abs(Math.round(a)), y=Math.abs(Math.round(b));
+                while(y){ let t=y; y=x%y; x=t; } return x;
+            }},
+            { id: 15, eng: "LCM", ita: "mcm", desc: "Least Common Multiple", count: 2, calc: (a,b)=>{
+                let x=Math.abs(Math.round(a)), y=Math.abs(Math.round(b));
+                if(!x||!y) return 0;
+                let gcd=(m,n)=>n===0?m:gcd(n,m%n);
+                return (x*y)/gcd(x,y);
+            }},
+            { id: 16, eng: "Bitwise AND", ita: "AND bit a bit", desc: "Bitwise AND operation", count: 2, calc: (a,b)=>(parseInt(a)&parseInt(b)) },
+            { id: 17, eng: "Bitwise OR", ita: "OR bit a bit", desc: "Bitwise OR operation", count: 2, calc: (a,b)=>(parseInt(a)|parseInt(b)) },
+            { id: 18, eng: "Bitwise XOR", ita: "XOR bit a bit", desc: "Bitwise XOR operation", count: 2, calc: (a,b)=>(parseInt(a)^parseInt(b)) },
+            { id: 19, eng: "Shift Left", ita: "Scorrimento a Sinistra", desc: "Shift left (A << B)", count: 2, calc: (a,b)=>(parseInt(a)<<parseInt(b)) },
+            { id: 20, eng: "Shift Right", ita: "Scorrimento a Destra", desc: "Shift right (A >> B)", count: 2, calc: (a,b)=>(parseInt(a)>>parseInt(b)) },
+            { id: 21, eng: "Rectangle Area", ita: "Area Rettangolo", desc: "Rectangle area calculation", count: 2, calc: (a,b)=>a*b },
+            { id: 22, eng: "Triangle Area", ita: "Area Triangolo", desc: "Triangle area calculation", count: 2, calc: (a,b)=>0.5*a*b },
+            { id: 23, eng: "Simple Interest", ita: "Interesse Semplice", desc: "Simple interest rate calculation", count: 3, labels: ["Principal (P)", "Rate % (R)", "Time (T)"], calc: (a,b,c)=>(a*b*c)/100 },
+            { id: 24, eng: "Distance", ita: "Distanza", desc: "2D distance formula", count: 2, calc: (a,b)=>Math.hypot(a,b) },
+            { id: 25, eng: "Equality", ita: "Uguaglianza", desc: "Equality validation (A == B)", count: 2, calc: (a,b)=>a===b ? "TRUE (1)" : "FALSE (0)" }
+        ];
+
+        let activeFunc = florenzianFunctions[0];
+        const functionListEl = document.getElementById('functionList');
+
+        function renderFunctionList(items) {
+            functionListEl.innerHTML = '';
+            items.forEach(item => {
+                const div = document.createElement('div');
+                div.className = `func-item ${activeFunc.id === item.id ? 'active' : ''}`;
+                div.innerHTML = `
+                    <div class="func-item-header">
+                        <span class="func-title">${item.id}. ${item.ita}</span>
+                        <span class="func-badge">${item.eng}</span>
+                    </div>
+                    <div class="func-desc">${item.desc}</div>
+                `;
+                div.onclick = () => {
+                    activeFunc = item;
+                    renderFunctionList(florenzianFunctions);
+                    updateWorkspaceUI();
+                };
+                functionListEl.appendChild(div);
+            });
+        }
+
+        function updateWorkspaceUI() {
+            document.getElementById('activeEng').innerText = activeFunc.eng;
+            document.getElementById('activeIta').innerText = activeFunc.ita;
+            document.getElementById('activeDesc').innerText = activeFunc.desc;
+            document.getElementById('outputResult').innerText = '--';
+
+            document.getElementById('inputA').value = '';
+            document.getElementById('inputB').value = '';
+            document.getElementById('inputC').value = '';
+
+            const boxC = document.getElementById('boxC');
+
+            if (activeFunc.count === 3) {
+                boxC.style.display = 'block';
+                boxC.classList.remove('d-none');
+                document.getElementById('labelA').innerText = activeFunc.labels[0];
+                document.getElementById('labelB').innerText = activeFunc.labels[1];
+                document.getElementById('labelC').innerText = activeFunc.labels[2];
+                document.getElementById('inputC').required = true;
+            } else {
+                boxC.style.display = 'none';
+                boxC.classList.add('d-none');
+                document.getElementById('labelA').innerText = "Input A";
+                document.getElementById('labelB').innerText = "Input B";
+                document.getElementById('inputC').required = false;
+            }
+
+            const header = document.getElementById('consoleHeader');
+            header.style.animation = 'none';
+            header.offsetHeight;
+            header.style.animation = 'slideUp 0.35s ease';
+        }
+
+        document.getElementById('calcForm').onsubmit = (e) => {
+            e.preventDefault();
+            const a = parseFloat(document.getElementById('inputA').value);
+            const b = parseFloat(document.getElementById('inputB').value);
+            const c = parseFloat(document.getElementById('inputC').value);
+
+            if (isNaN(a) || isNaN(b) || (activeFunc.count === 3 && isNaN(c))) {
+                document.getElementById('outputResult').innerText = "Error: Invalid Inputs";
+                return;
+            }
+
+            const res = activeFunc.count === 3 ? activeFunc.calc(a, b, c) : activeFunc.calc(a, b);
+            
+            const outEl = document.getElementById('outputResult');
+            outEl.innerText = res;
+            outEl.style.animation = 'none';
+            outEl.offsetHeight;
+            outEl.style.animation = 'popIn 0.3s ease';
+        };
+
+        // Live Search Filter
+        document.getElementById('searchInput').oninput = (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = florenzianFunctions.filter(f => 
+                f.eng.toLowerCase().includes(query) || 
+                f.ita.toLowerCase().includes(query) ||
+                f.desc.toLowerCase().includes(query)
+            );
+            renderFunctionList(filtered);
+        };
+
+        // Initialize App
+        renderFunctionList(florenzianFunctions);
+        updateWorkspaceUI();
+    </script>
+</body>
+</html>

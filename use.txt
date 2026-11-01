@@ -1,0 +1,85 @@
+Ekdom! 25 ti Florenzian Script function-er protitir jonno nirdisto vabe **ki ki input** dile proper testing hobe, tar ekta complete guide niche dewa holo:
+
+1. **Add/Sum (Addizione):** Input A = `15`, Input B = `25` (Expected Output: `40`)
+
+
+2. **Subtract (Sottrazione):** Input A = `50`, Input B = `20` (Expected Output: `30`)
+
+
+3. **Multiply (Moltiplicazione):** Input A = `12`, Input B = `5` (Expected Output: `60`)
+
+
+4. **Divide (Divisione):** Input A = `100`, Input B = `4` (Expected Output: `25`). *Error Test:* Input B = `0` diye dekho error show kore kina.
+
+
+5. **Modulus (Modulo):** Input A = `17`, Input B = `5` (Expected Output: `2`)
+
+
+6. **Exponentiation (Esponenziazione):** Input A = `2` (Base), Input B = `3` (Exponent) (Expected Output: `8`)
+
+
+7. **Average (Media):** Input A = `10`, Input B = `20` (Expected Output: `15`)
+
+
+8. **Maximum (Massimo):** Input A = `45`, Input B = `89` (Expected Output: `89`)
+
+
+9. **Minimum (Minimo):** Input A = `45`, Input B = `89` (Expected Output: `45`)
+
+
+10. **Percentage (Percentuale):** Input A = `20` (Percentage), Input B = `200` (Total) (Expected Output: `40`)
+
+
+11. **Hypotenuse (Ipotenusa):** Input A = `3`, Input B = `4` (Expected Output: `5`)
+
+
+12. **Logarithm (Logaritmo):** Input A = `8` (Number), Input B = `2` (Base) (Expected Output: `3`)
+
+
+13. **Absolute (Valore Assoluto):** Input A = `15`, Input B = `40` (Expected Output: `25`)
+
+
+14. **GCD (MCD):** Input A = `24`, Input B = `36` (Expected Output: `12`)
+
+
+15. **LCM (mcm):** Input A = `4`, Input B = `6` (Expected Output: `12`)
+
+
+16. **Bitwise AND (AND bit a bit):** Input A = `5` (Binary: 101), Input B = `3` (Binary: 011) (Expected Output: `1`)
+
+
+17. **Bitwise OR (OR bit a bit):** Input A = `5`, Input B = `3` (Expected Output: `7`)
+
+
+18. **Bitwise XOR (XOR bit a bit):** Input A = `5`, Input B = `3` (Expected Output: `6`)
+
+
+19. **Shift Left (Scorrimento a Sinistra):** Input A = `4`, Input B = `1` (Expected Output: `8`)
+
+
+20. **Shift Right (Scorrimento a Destra):** Input A = `8`, Input B = `1` (Expected Output: `4`)
+
+
+21. **Rectangle Area (Area Rettangolo):** Input A = `10` (Length), Input B = `5` (Width) (Expected Output: `50`)
+
+
+22. **Triangle Area (Area Triangolo):** Input A = `10` (Base), Input B = `8` (Height) (Expected Output: `40`)
+
+
+23. **Simple Interest (Interesse Semplice):** *(Ei function-ti select korle 3 ti input box ashbe)*
+
+
+* Input A (Principal P) = `1000`
+* Input B (Rate R) = `5`
+* Input C (Time T) = `2`
+*(Expected Output: `100`)*
+
+
+24. **Distance (Distanza):** Input A = `3`, Input B = `4` (Expected Output: `5`)
+
+
+25. **Equality (Uguaglianza):**
+* *Test 1:* Input A = `50`, Input B = `50` (Expected Output: `TRUE (1)`)
+
+
+* *Test 2:* Input A = `50`, Input B = `30` (Expected Output: `FALSE (0)`)
